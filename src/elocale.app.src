@@ -1,0 +1,13 @@
+%% -*-Erlang-*-
+{application, elocale,
+ [
+  {description, "POSIX locale API for Erlang"},
+  {vsn, "1"},
+  {registered, []},
+  {applications, [
+                  kernel,
+                  stdlib
+                 ]},
+  %{mod, { elocale_app, []}},
+  {env, []}
+ ]}.
