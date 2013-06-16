@@ -1,6 +1,5 @@
 POSIX locale API for Erlang
 ===========================
-
 ```Erlang
   <<"UTF-8">> = elocale:codeset ("C", "UTF-8").
   <<"UTF-8">> = elocale:codeset ("C").
@@ -29,4 +28,15 @@ Note that the date/time formats conforms to POSIX standards
 and cannot be used directly from bare Erlang.
 Of course, there are libraries like this:
 [http://github.com/kennystone/strftimerl](http://github.com/kennystone/strftimerl).
-  
+
+Also don't forget to configure your operating system to support
+all the locales you're going to generate. The procedure should
+be as easy as the following Linux command:
+```
+  sudo localedef -v -c -i cs_CZ -f UTF-8 cs_CZ.UTF-8
+```
+
+The current EUnit test suite expects the support of at least
+locales pre-generated and shipped with this project:
+`C`, `POSIX`, `cs_CZ`, `en_US`, `en_GB`, `fa_IR`, `ru_RU`, `fr_FR`
+(all of them are encoded with UTF-8).
