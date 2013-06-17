@@ -12,8 +12,8 @@
   alternate_digits/1, alternate_digits/2,
   radix_char/1, radix_char/2,
   thousands_separator_li/1, thousands_separator_li/2,
-  yes_expression/1, yes_expression/2,
-  no_expression/1, no_expression/2,
+  yes_str/1, yes_str/2, yes_expression/1, yes_expression/2,
+  no_str/1, no_str/2, no_expression/1, no_expression/2,
   currency_string/1, currency_string/2,
   is_negative_number_space_separated/1,
   is_negative_number_space_separated/2,
@@ -47,7 +47,8 @@
   'ABMON_1', 'ABMON_2', 'ABMON_3', 'ABMON_4', 'ABMON_5', 'ABMON_6',
   'ABMON_7', 'ABMON_8', 'ABMON_9', 'ABMON_10', 'ABMON_11', 'ABMON_12',
   'ERA', 'ERA_D_FMT', 'ERA_D_T_FMT', 'ERA_T_FMT', 'ALT_DIGITS',
-  'RADIXCHAR', 'THOUSEP', 'YESEXPR', 'NOEXPR', 'CRNCYSTR',
+  'RADIXCHAR', 'THOUSEP', 'YESSTR', 'YESEXPR', 'NOSTR', 'NOEXPR',
+  'CRNCYSTR',
 
   %% Numeric and monetary notation properties (`lconv' @ locale.h)
   'decimal_point', 'thousands_sep', 'grouping', 'int_curr_symbol',
@@ -165,6 +166,18 @@ no_expression (Culture) ->
   no_expression (Culture, undefined).
 no_expression (Culture, Encoding) ->
   call_ (Culture, Encoding, 'NOEXPR').
+
+%% @doc Localized YES string.
+yes_str (Culture) ->
+  yes_str (Culture, undefined).
+yes_str (Culture, Encoding) ->
+  call_ (Culture, Encoding, 'YESSTR').
+
+%% @doc Localized NO string.
+no_str (Culture) ->
+  no_str (Culture, undefined).
+no_str (Culture, Encoding) ->
+  call_ (Culture, Encoding, 'NOSTR').
 
 %% @doc Localized currency string.
 currency_string (Culture) ->
@@ -341,6 +354,8 @@ common_test () ->
   ?assertEqual (<<"£">>, currency_symbol ("en_GB")),
   ?assertEqual (<<"IRR ">>, currency_symbol_i10l ("fa_IR")),
   ?assertEqual (<<"ریال">>, currency_symbol ("fa_IR")),
+  ?assertEqual (<<"ano">>, yes_str ("cs_CZ")),
+  ?assertEqual (<<"Yes">>, yes_str ("en_US")),
   ok.
 
 -endif.
